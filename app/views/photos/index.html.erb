@@ -5,28 +5,24 @@
   </h1>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Caption</th>
-        <th>Image</th>
-        <th>User</th>
-        <th>Actions</th>
-      </tr>
 
-      <% @photos.each do |photo| %>
-      <tr>
-        <td><%= photo.caption %></td>
-        <td><img src="<%= photo.image %>"></td>
-        <td><%= photo.user_id %></td>
-        <td>
-          <a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
-          <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
+  <% @photos.each do |photo| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+<%=photo.user.username  %>  <%= time_ago_in_words(photo.updated_at) %> ago
 </div>
+</div>
+<div class="panel-body">
+  <img src="<%= photo.image %>" class="img-responsive" alt="Responsive image">
+  <div><a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
+    <% if current_user.id==photo.user_id %>
+  <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>
+  <%else  %>
+  <%end  %>
+  <% if current_user.id==photo.user_id %>
+  <a href="/delete_photo/<%= photo.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+  <%else  %>
+  <%end  %>
+</div>
+</div>
+<%end%>

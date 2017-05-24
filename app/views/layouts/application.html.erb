@@ -42,10 +42,13 @@
         <ul class="nav navbar-nav">
             <li><a href="/users">All Users</a></li>
           <li><a href="/comments">Comments</a></li>
-          <li><a href="/likes">Likes</a></li>
+          <% if current_user==nil %>
+          <% else %>
+          <li><a href="/my_likes">My Likes</a></li>
+          <%end%>
             <% if current_user==nil %>
             <% else %>
-            <li><a href="/likes">Li</a></li>
+            <li><a href="/users/<%=current_user.id%>">My Wall</a></li>
             <%end%>
           <li><a href="/rails/info">Sitemap</a></li>
         </ul>
