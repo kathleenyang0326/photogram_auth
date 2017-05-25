@@ -14,12 +14,14 @@
 </div>
 <div class="panel-body">
   <img src="<%= photo.image %>" class="img-responsive" alt="Responsive image">
-<%if current_user.liked_photos.id==photo.id  %>
-<a href="/delete_like/#{photo.id}" class="btn btn-link">
-<i class="fa fa-heart"></i>
-</a>
-<%else  %>
- <form action="/create_like" method="post">
+
+
+ <% if Like.where(:user_id=> current_user.id, :photo_id=> photo.id).exists?%>
+ <a href="/delete_like/<%=Like.find_by({:user_id=> current_user.id, :photo_id=> photo.id}).id%>" class="btn btn-link">
+ <i class="fa fa-heart"></i>
+ </a>
+ <%else  %>
+<form action="/create_like" method="post">
 <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 <input type="hidden" name="photo_id" value="<%=photo.id  %>">
 <input type="hidden" name="user_id" value="<%= current_user.id %>">
@@ -27,7 +29,7 @@
 <i class="fa fa-heart-o"></i>
 </button>
 </form>
-<%end %>
+<%end  %>
 
 
 
