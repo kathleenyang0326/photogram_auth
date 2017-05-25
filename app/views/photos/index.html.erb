@@ -14,6 +14,21 @@
 </div>
 <div class="panel-body">
   <img src="<%= photo.image %>" class="img-responsive" alt="Responsive image">
+<%if current_user.liked_photos.id==photo.id  %>
+<a href="/delete_like/#{photo.id}" class="btn btn-link">
+<i class="fa fa-heart"></i>
+</a>
+<%else  %>
+ <form action="/create_like" method="post">
+<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+<input type="hidden" name="photo_id" value="<%=photo.id  %>">
+<input type="hidden" name="user_id" value="<%= current_user.id %>">
+<button class="btn btn-link">
+<i class="fa fa-heart-o"></i>
+</button>
+</form>
+<%end %>
+
 
 
 <form action="/create_comment" method="post">
