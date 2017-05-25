@@ -14,6 +14,29 @@
 </div>
 <div class="panel-body">
   <img src="<%= photo.image %>" class="img-responsive" alt="Responsive image">
+
+
+<form action="/create_comment" method="post">
+  <input type="hidden" name="photo_id" value="<%=photo.id  %>">
+  <input type="hidden" name="user_id" value="<%= current_user.id %>">
+  <div class="form-group">
+  <label for="body" class="sr-only">
+  Body
+  </label>
+
+   <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+  <div class="input-group">
+  <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment..." required>
+
+  <span class="input-group-btn">
+  <button class="btn btn-default" type="button">
+  <i class="fa fa-commenting-o"></i>
+  </button>
+  </span>
+  </div>
+</form>
+
+
   <div><a href="/photos/<%= photo.id %>" class="btn btn-primary">Show</a>
     <% if current_user.id==photo.user_id %>
   <a href="/photos/<%= photo.id %>/edit" class="btn btn-warning">Edit</a>
