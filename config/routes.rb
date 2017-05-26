@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "/likes/new", :controller => "likes", :action => "new"
   post "/create_like", :controller => "likes", :action => "create"
 
+
   # READ
   get "/my_likes", :controller => "likes", :action => "index"
   get "/likes/:id", :controller => "likes", :action => "show"
@@ -57,4 +58,4 @@ Rails.application.routes.draw do
   get "/users", :controller => "users", :action => "index"
 
   get("/users/:id",{:controller=>"users",:action=>"show"})
-end
+  post "/user/create_like", :controller => "users",:action=>"createlike"
