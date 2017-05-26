@@ -31,6 +31,26 @@
 </form>
 <%end  %>
 
+  <% @photocomments=photo.comments.all  %>
+    <% @photocomments.each do |photocomment| %>
+    <li class="media">
+                <div class="media-body">
+                  <h6 class="media-heading">
+                    <a href="/users/<%= photocomment.user.id %>">
+                    <%= photocomment.user.username %>
+                  </a>
+                    <small>
+                       <%= time_ago_in_words(photocomment.updated_at) %> ago
+                    </small>
+           </h6>
+           <%= photocomment.body %>
+         </div>
+                  </li>
+<%end  %>
+
+
+
+
 
 
 <form action="/create_comment" method="post">
