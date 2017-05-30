@@ -20,6 +20,17 @@
  <a href="/delete_like/<%=Like.find_by({:user_id=> current_user.id, :photo_id=> photo.id}).id%>" class="btn btn-link">
  <i class="fa fa-heart"></i>
  </a>
+
+<% if Like.where(:photo_id=> photo.id).exists?%>
+<%if photo.fans.pluck(:username).count==1  %>
+<small><%=photo.fans.pluck(:username).to_sentence%> likes this</small>
+<%else  %>
+<small><%=photo.fans.pluck(:username).to_sentence%> like this</small>
+<%end  %>
+<%else  %>
+<small>be the first to like this</small>
+<%end%>
+
  <%else  %>
 <form action="/create_like" method="post">
 <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
@@ -28,6 +39,19 @@
 <button class="btn btn-link">
 <i class="fa fa-heart-o"></i>
 </button>
+
+<% if Like.where(:photo_id=> photo.id).exists?%>
+<%if photo.fans.pluck(:username).count==1  %>
+<small><%=photo.fans.pluck(:username).to_sentence%> likes this</small>
+<%else  %>
+<small><%=photo.fans.pluck(:username).to_sentence%> like this</small>
+<%end  %>
+<%else  %>
+<small>be the first to like this</small>
+<%end%>
+
+
+
 </form>
 <%end  %>
 

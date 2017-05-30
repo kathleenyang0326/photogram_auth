@@ -59,3 +59,5 @@ Rails.application.routes.draw do
 
   get("/users/:id",{:controller=>"users",:action=>"show"})
   post "/user/create_like", :controller => "users",:action=>"createlike"
+
+  end
