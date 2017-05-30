@@ -1,9 +1,17 @@
 class LikesController < ApplicationController
     before_action :authenticate_user!
-  def index
+
+    def index
+      @likes = Like.all
+
+      render("likes/index.html.erb")
+    end
+
+
+  def mylikes
     @likes = current_user.liked_photos
 
-    render("likes/index.html.erb")
+    render("likes/mylikes.html.erb")
   end
 
   def show
