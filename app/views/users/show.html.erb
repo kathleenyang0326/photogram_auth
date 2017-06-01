@@ -7,7 +7,7 @@
 <% @userposts.each do |userpost| %>
       <div class="panel panel-default">
         <div class="panel-heading">
-  <%=userpost.user.username  %>  <%= time_ago_in_words(userpost.updated_at) %> ago
+  <%= userpost.caption %>  <%=userpost.user.username  %>  <%= time_ago_in_words(userpost.updated_at) %> ago
   </div>
   </div>
 
@@ -63,7 +63,7 @@
          <input type="text" id="body" name="body" class="form-control" placeholder="Add a comment..." required>
 
          <span class="input-group-btn">
-         <button class="btn btn-default" type="button">
+         <button class="btn btn-default" type="submit">
          <i class="fa fa-commenting-o"></i>
          </button>
          </span>
